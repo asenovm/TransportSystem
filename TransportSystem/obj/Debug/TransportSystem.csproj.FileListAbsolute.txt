@@ -1,0 +1,7 @@
+c:\users\martin\documents\visual studio 2010\Projects\TransportSystem\TransportSystem\bin\TransportSystem.dll
+c:\users\martin\documents\visual studio 2010\Projects\TransportSystem\TransportSystem\bin\TransportSystem.pdb
+c:\users\martin\documents\visual studio 2010\Projects\TransportSystem\TransportSystem\obj\Debug\ResolveAssemblyReference.cache
+c:\users\martin\documents\visual studio 2010\Projects\TransportSystem\TransportSystem\obj\Debug\TransportSystem.dll
+c:\users\martin\documents\visual studio 2010\Projects\TransportSystem\TransportSystem\obj\Debug\TransportSystem.pdb
+c:\users\martin\documents\visual studio 2010\Projects\TransportSystem\TransportSystem\bin\DataLayer.dll
+c:\users\martin\documents\visual studio 2010\Projects\TransportSystem\TransportSystem\bin\DataLayer.pdb

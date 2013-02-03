@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransportSystem", "TransportSystem\TransportSystem.csproj", "{4654D41B-3434-44E5-BCD2-3378387E2E4E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer", "DataLayer\DataLayer.csproj", "{B8AD3E92-C16E-49BC-A7A9-86E4CD16ECE6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4654D41B-3434-44E5-BCD2-3378387E2E4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4654D41B-3434-44E5-BCD2-3378387E2E4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4654D41B-3434-44E5-BCD2-3378387E2E4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4654D41B-3434-44E5-BCD2-3378387E2E4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8AD3E92-C16E-49BC-A7A9-86E4CD16ECE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8AD3E92-C16E-49BC-A7A9-86E4CD16ECE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8AD3E92-C16E-49BC-A7A9-86E4CD16ECE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8AD3E92-C16E-49BC-A7A9-86E4CD16ECE6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

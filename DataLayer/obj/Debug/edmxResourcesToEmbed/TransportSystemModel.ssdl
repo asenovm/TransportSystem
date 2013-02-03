@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TransportSystemModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="TransportSystemModelStoreContainer">
+    <EntitySet Name="Companies" EntityType="TransportSystemModel.Store.Companies" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Stops" EntityType="TransportSystemModel.Store.Stops" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Travels" EntityType="TransportSystemModel.Store.Travels" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_COMPANIES" Association="TransportSystemModel.Store.FK_COMPANIES">
+      <End Role="Companies" EntitySet="Companies" />
+      <End Role="Travels" EntitySet="Travels" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TRAVELS" Association="TransportSystemModel.Store.FK_TRAVELS">
+      <End Role="Travels" EntitySet="Travels" />
+      <End Role="Stops" EntitySet="Stops" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Companies">
+    <Key>
+      <PropertyRef Name="Name" />
+    </Key>
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="30" />
+    <Property Name="City" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="Address" Type="varchar" Nullable="false" MaxLength="30" />
+    <Property Name="PhoneNumber" Type="varchar" Nullable="false" MaxLength="15" />
+    <Property Name="Email" Type="varchar" Nullable="false" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Stops">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="stop" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="stop" Type="varchar" Nullable="false" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="Travels">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="Company" Type="varchar" Nullable="false" MaxLength="30" />
+    <Property Name="StartCity" Type="varchar" Nullable="false" MaxLength="30" />
+    <Property Name="StartTime" Type="datetime" Nullable="false" />
+    <Property Name="EndCity" Type="varchar" Nullable="false" MaxLength="30" />
+    <Property Name="EndTime" Type="datetime" Nullable="false" />
+    <Property Name="TicketPrice" Type="int" Nullable="false" />
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <Association Name="FK_COMPANIES">
+    <End Role="Companies" Type="TransportSystemModel.Store.Companies" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Travels" Type="TransportSystemModel.Store.Travels" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companies">
+        <PropertyRef Name="Name" />
+      </Principal>
+      <Dependent Role="Travels">
+        <PropertyRef Name="Company" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TRAVELS">
+    <End Role="Travels" Type="TransportSystemModel.Store.Travels" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Stops" Type="TransportSystemModel.Store.Stops" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Travels">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Stops">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

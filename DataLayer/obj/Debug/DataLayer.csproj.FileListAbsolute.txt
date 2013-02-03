@@ -1,0 +1,6 @@
+C:\Users\martin\documents\visual studio 2010\Projects\TransportSystem\DataLayer\bin\Debug\DataLayer.dll.config
+C:\Users\martin\documents\visual studio 2010\Projects\TransportSystem\DataLayer\bin\Debug\DataLayer.dll
+C:\Users\martin\documents\visual studio 2010\Projects\TransportSystem\DataLayer\bin\Debug\DataLayer.pdb
+C:\Users\martin\documents\visual studio 2010\Projects\TransportSystem\DataLayer\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\martin\documents\visual studio 2010\Projects\TransportSystem\DataLayer\obj\Debug\DataLayer.dll
+C:\Users\martin\documents\visual studio 2010\Projects\TransportSystem\DataLayer\obj\Debug\DataLayer.pdb

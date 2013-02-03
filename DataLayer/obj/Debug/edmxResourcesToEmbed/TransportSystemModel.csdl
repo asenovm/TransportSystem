@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TransportSystemModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="TransportSystemDB" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Companies" EntityType="TransportSystemModel.Company" />
+    <EntitySet Name="Stops" EntityType="TransportSystemModel.Stop" />
+    <EntitySet Name="Travels" EntityType="TransportSystemModel.Travel" />
+    <AssociationSet Name="FK_COMPANIES" Association="TransportSystemModel.FK_COMPANIES">
+      <End Role="Companies" EntitySet="Companies" />
+      <End Role="Travels" EntitySet="Travels" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TRAVELS" Association="TransportSystemModel.FK_TRAVELS">
+      <End Role="Travels" EntitySet="Travels" />
+      <End Role="Stops" EntitySet="Stops" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Company">
+    <Key>
+      <PropertyRef Name="Name" />
+    </Key>
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="City" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="false" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Travels" Relationship="TransportSystemModel.FK_COMPANIES" FromRole="Companies" ToRole="Travels" />
+  </EntityType>
+  <EntityType Name="Stop">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="stop1" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="stop1" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Travel" Relationship="TransportSystemModel.FK_TRAVELS" FromRole="Stops" ToRole="Travels" />
+  </EntityType>
+  <EntityType Name="Travel">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="Company" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="StartCity" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="StartTime" Type="DateTime" Nullable="false" />
+    <Property Name="EndCity" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="EndTime" Type="DateTime" Nullable="false" />
+    <Property Name="TicketPrice" Type="Int32" Nullable="false" />
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Company1" Relationship="TransportSystemModel.FK_COMPANIES" FromRole="Travels" ToRole="Companies" />
+    <NavigationProperty Name="Stops" Relationship="TransportSystemModel.FK_TRAVELS" FromRole="Travels" ToRole="Stops" />
+  </EntityType>
+  <Association Name="FK_COMPANIES">
+    <End Role="Companies" Type="TransportSystemModel.Company" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Travels" Type="TransportSystemModel.Travel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companies">
+        <PropertyRef Name="Name" />
+      </Principal>
+      <Dependent Role="Travels">
+        <PropertyRef Name="Company" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TRAVELS">
+    <End Role="Travels" Type="TransportSystemModel.Travel" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Stops" Type="TransportSystemModel.Stop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Travels">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Stops">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

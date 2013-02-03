@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TransportSystemModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="TransportSystemModelStoreContainer">
+          <EntitySet Name="Companies" EntityType="TransportSystemModel.Store.Companies" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Stops" EntityType="TransportSystemModel.Store.Stops" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Travels" EntityType="TransportSystemModel.Store.Travels" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_COMPANIES" Association="TransportSystemModel.Store.FK_COMPANIES">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="Travels" EntitySet="Travels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRAVELS" Association="TransportSystemModel.Store.FK_TRAVELS">
+            <End Role="Travels" EntitySet="Travels" />
+            <End Role="Stops" EntitySet="Stops" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Companies">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="City" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="Address" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="PhoneNumber" Type="varchar" Nullable="false" MaxLength="15" />
+          <Property Name="Email" Type="varchar" Nullable="false" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Stops">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="stop" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="stop" Type="varchar" Nullable="false" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Travels">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="Company" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="StartCity" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="StartTime" Type="datetime" Nullable="false" />
+          <Property Name="EndCity" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="EndTime" Type="datetime" Nullable="false" />
+          <Property Name="TicketPrice" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <Association Name="FK_COMPANIES">
+          <End Role="Companies" Type="TransportSystemModel.Store.Companies" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Travels" Type="TransportSystemModel.Store.Travels" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="Travels">
+              <PropertyRef Name="Company" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRAVELS">
+          <End Role="Travels" Type="TransportSystemModel.Store.Travels" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Stops" Type="TransportSystemModel.Store.Stops" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Travels">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Stops">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TransportSystemModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="TransportSystemDB" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Companies" EntityType="TransportSystemModel.Company" />
+          <EntitySet Name="Stops" EntityType="TransportSystemModel.Stop" />
+          <EntitySet Name="Travels" EntityType="TransportSystemModel.Travel" />
+          <AssociationSet Name="FK_COMPANIES" Association="TransportSystemModel.FK_COMPANIES">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="Travels" EntitySet="Travels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRAVELS" Association="TransportSystemModel.FK_TRAVELS">
+            <End Role="Travels" EntitySet="Travels" />
+            <End Role="Stops" EntitySet="Stops" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Travels" Relationship="TransportSystemModel.FK_COMPANIES" FromRole="Companies" ToRole="Travels" />
+        </EntityType>
+        <EntityType Name="Stop">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="stop1" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="stop1" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Travel" Relationship="TransportSystemModel.FK_TRAVELS" FromRole="Stops" ToRole="Travels" />
+        </EntityType>
+        <EntityType Name="Travel">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="Company" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="StartCity" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="StartTime" Type="DateTime" Nullable="false" />
+          <Property Name="EndCity" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="EndTime" Type="DateTime" Nullable="false" />
+          <Property Name="TicketPrice" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Company1" Relationship="TransportSystemModel.FK_COMPANIES" FromRole="Travels" ToRole="Companies" />
+          <NavigationProperty Name="Stops" Relationship="TransportSystemModel.FK_TRAVELS" FromRole="Travels" ToRole="Stops" />
+        </EntityType>
+        <Association Name="FK_COMPANIES">
+          <End Role="Companies" Type="TransportSystemModel.Company" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Travels" Type="TransportSystemModel.Travel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="Travels">
+              <PropertyRef Name="Company" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRAVELS">
+          <End Role="Travels" Type="TransportSystemModel.Travel" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Stops" Type="TransportSystemModel.Stop" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Travels">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Stops">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TransportSystemModelStoreContainer" CdmEntityContainer="TransportSystemDB">
+          <EntitySetMapping Name="Companies"><EntityTypeMapping TypeName="TransportSystemModel.Company"><MappingFragment StoreEntitySet="Companies">
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="City" ColumnName="City" />
+            <ScalarProperty Name="Address" ColumnName="Address" />
+            <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+            <ScalarProperty Name="Email" ColumnName="Email" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Stops"><EntityTypeMapping TypeName="TransportSystemModel.Stop"><MappingFragment StoreEntitySet="Stops">
+            <ScalarProperty Name="id" ColumnName="id" />
+            <ScalarProperty Name="stop1" ColumnName="stop" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Travels"><EntityTypeMapping TypeName="TransportSystemModel.Travel"><MappingFragment StoreEntitySet="Travels">
+            <ScalarProperty Name="Company" ColumnName="Company" />
+            <ScalarProperty Name="StartCity" ColumnName="StartCity" />
+            <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+            <ScalarProperty Name="EndCity" ColumnName="EndCity" />
+            <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+            <ScalarProperty Name="TicketPrice" ColumnName="TicketPrice" />
+            <ScalarProperty Name="id" ColumnName="id" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="TransportSystemModel">
+        <EntityTypeShape EntityType="TransportSystemModel.Company" Width="1.5" PointX="0.75" PointY="1.25" Height="2.1725878906250005" IsExpanded="true" />
+        <EntityTypeShape EntityType="TransportSystemModel.Stop" Width="1.5" PointX="5.25" PointY="1.5" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="TransportSystemModel.Travel" Width="1.5" PointX="3" PointY="1" Height="2.7494921874999996" IsExpanded="true" />
+        <AssociationConnector Association="TransportSystemModel.FK_COMPANIES" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="2.3362939453125002" />
+          <ConnectorPoint PointX="3" PointY="2.3362939453125002" />
+        </AssociationConnector>
+        <AssociationConnector Association="TransportSystemModel.FK_TRAVELS" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="2.297841796875" />
+          <ConnectorPoint PointX="5.25" PointY="2.297841796875" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
