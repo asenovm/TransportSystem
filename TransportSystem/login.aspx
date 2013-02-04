@@ -19,7 +19,7 @@
 			</article>
 			<form runat="server" class="container big bordered">
 					<label for="username">Username</label>
-					<asp:TextBox ID="username" runat="server" Text="username" CssClass="input"/>
+					<asp:TextBox ID="username" runat="server" CssClass="input"/>
                     <br />
                     <asp:RequiredFieldValidator ID="usernameValidator" runat="server" ControlToValidate="username" ErrorMessage="Username cannot be blank" />
 					<br />
@@ -29,6 +29,8 @@
 					<br />
 					<article class="light bottom">
 						Not an administrator? <a href="arriving.aspx">Continue</a> as guest.
+                        <br />
+                        Don't have an account? Feel free to <a href="registerUser.aspx">Register</a>.
 					</article>
 			</form>
 		</section>

@@ -12,12 +12,28 @@ namespace TransportSystem
     {
 
         protected void OnRegisterButtonClicked(object sender, EventArgs e) {
+            if (!Page.IsValid) {
+                return;
+            }
+
             if (!Roles.RoleExists("admin")) {
                 Roles.CreateRole("admin");
             }
             Membership.CreateUser(username.Text, password.Text, email.Text);
             Roles.AddUserToRole(username.Text, "admin");
-            Response.Redirect(Request.RawUrl);
+            registerLabel.Text = "User successfully registered";
+            ClearFields();
+        }
+
+        private void ClearFields() {
+            username.Text = "";
+            password.Text = "";
+            repeatPassword.Text = "";
+            email.Text = "";
+        }
+
+        protected void ValidateUsername(object sender, ServerValidateEventArgs args) {
+            args.IsValid = Membership.GetUser(username.Text) == null;
         }
     }
 }

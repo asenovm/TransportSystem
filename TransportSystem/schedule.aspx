@@ -5,7 +5,6 @@
 	<head>
 		<title>Transport system - Login</title>
 		<link type="text/css" rel="stylesheet" href="styles/main.css" />
-        <script type="text/javascript" src="jscript/utils.js"></script>
 		<script type="text/javascript" src="jscript/jquery-1.8.3.js"></script>
 	</head>
 	<body>
@@ -51,8 +50,6 @@
 				    <asp:TextBox runat="server" class="input" ID="intermediaryStop" />
                     <br />
                     <asp:RegularExpressionValidator runat="server" ControlToValidate="intermediaryStop" ValidationExpression="[a-zA-Z]+" ErrorMessage="Invalid city" />
-                    <br />
-				    <button class="right" type="button">Add</button>
 				    <br />
 				    <label for="end">End City</label>
 				    <asp:TextBox runat="server" class="input" ID="endCity" />
@@ -72,7 +69,7 @@
                     <asp:RequiredFieldValidator runat="server" ControlToValidate="ticketPrice" ErrorMessage="Field cannot be blank" Display="Dynamic" />
                     <asp:RegularExpressionValidator runat="server" ControlToValidate="ticketPrice" ErrorMessage="Invalid price format" Display="Dynamic" ValidationExpression="\d+" />
                     <br />
-                    <asp:Label ID="scheduleLabel" runat="server" />
+                    <asp:Label ID="scheduleLabel" runat="server" CssClass="successLabel" />
                     <br />
 				    <asp:Button runat="server" type="submit" Text="Submit" id="submit" OnClick="scheduleButtonClicked" CssClass="successLabel" />
                 </section>

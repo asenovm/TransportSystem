@@ -48,14 +48,14 @@
 				    </asp:DropDownList>
                     <br />
 				    <label for="value">New Value</label>
-				    <asp:TextBox class="input" runat="server" type="text" name="Enter new value" value="Enter new value" ID="newValue" />
+				    <asp:TextBox class="input" runat="server" ID="newValue" />
                     <br />
                     <asp:RequiredFieldValidator runat="server" ControlToValidate="newValue" ErrorMessage="Field cannot be blank" Display="Dynamic" />
                     <asp:CustomValidator runat="server" ControlToValidate="newValue" ErrorMessage="Invalid value for attribute" OnServerValidate="ValidateEditedValue" Display="Dynamic" />
                     <br />
-                    <asp:Label runat="server" ID="editLabel" />
+                    <asp:Label runat="server" CssClass="successLabel" ID="editLabel" />
                     <br />
-				    <asp:Button runat="server" type="submit" Text="Submit" id="submit" OnClick="editButtonClicked"/>
+				    <asp:Button runat="server" Text="Submit" id="submit" OnClick="editButtonClicked"/>
 			    </section>
 		    </section>
 		    <footer class="grey">

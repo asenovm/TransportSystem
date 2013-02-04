@@ -54,5 +54,12 @@ namespace TransportSystem
             return Membership.GetUser() != null;
         }
 
+
+        protected void OnGridViewPageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            results.PageIndex = e.NewPageIndex;
+            results.DataBind();
+        }
+
     }
 }

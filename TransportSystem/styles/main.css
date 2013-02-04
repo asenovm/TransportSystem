@@ -184,7 +184,7 @@ label{
 	font-weight: bold;
 	border: 1px solid #72231c;
 	position: absolute;
-	bottom: 40px;
+	bottom: 60px;
 	left: 30%;
 }
 
@@ -243,6 +243,7 @@ li a:hover{
 .gridView{
 	margin: 20px 5%;
 	width: 90%;
+	max-height: 350px;
 	border: 1px dashed #72231c;
 	background: #ddd7cb;
 	border-collapse: collapse;

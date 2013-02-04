@@ -76,5 +76,11 @@ namespace TransportSystem
                     break;
             }
         }
+
+        protected void OnGridViewPageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            results.PageIndex = e.NewPageIndex;
+            results.DataBind();
+        }
     }
 }

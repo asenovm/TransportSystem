@@ -53,7 +53,7 @@
 				    <article class="pick">
 					    Results
 				    </article>
-				    <asp:GridView ID="results" runat="server" CssClass="gridView">
+				    <asp:GridView ID="results" runat="server" CssClass="gridView" AllowPaging="true" OnPageIndexChanging="OnGridViewPageIndexChanging">
                         <HeaderStyle CssClass="gridViewItem" />
                         <RowStyle CssClass="gridViewItem" />    
                     </asp:GridView>

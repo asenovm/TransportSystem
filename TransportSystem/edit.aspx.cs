@@ -26,7 +26,6 @@ namespace TransportSystem
                 DBSaver saver = new DBSaver();
                 saver.EditCompany(companiesList.SelectedValue, attributesList.SelectedValue, newValue.Text);
                 editLabel.Text = "Attribute successfully edited";
-                editLabel.CssClass = "successLabel";
             }
             else {
                 editLabel.Text = "";
