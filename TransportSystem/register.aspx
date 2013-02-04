@@ -6,7 +6,6 @@
 		<title>Transport system - Login</title>
 		<link type="text/css" rel="stylesheet" href="styles/main.css" />
 		<script src="jscript/jquery-1.8.3.js"></script>
-		<script src="jscript/utils.js"></script>
 	</head>
 	<body>
         <form runat="server">
@@ -31,21 +30,36 @@
 			    <article class="grey bold label">
 				    You need to enter the following information in order to register a company
 			    </article>
-			    <section class="container big bordered">
+			    <section class="container bigger bordered">
 					    <label for="name">Company name</label>
-					    <asp:TextBox runat="server" class="input" ID="name" type="text" value="company name" name="company name" />
+					    <asp:TextBox runat="server" class="input" ID="name"  />
+                        <br />
+                        <asp:CustomValidator runat="server" ControlToValidate="name" ErrorMessage="Company already exists. Pick another name."  OnServerValidate="ValidateCompanyName" Display="Dynamic" />
+                        <asp:RequiredFieldValidator runat="server" ControlToValidate="name" ErrorMessage="Company name cannot be blank" Display="Dynamic" />
 					    <br />
 					    <label for="city" >City</label>
-					    <asp:TextBox runat="server" class="input" ID="city" type="text" value="city" name="city" />
+					    <asp:TextBox runat="server" class="input" ID="city" />
+                        <br />
+                        <asp:RequiredFieldValidator runat="server" ControlToValidate="city" ErrorMessage="City cannot be blank" />
 					    <br />
 					    <label for="address">Address</label>
-					    <asp:TextBox runat="server" class="input" ID="address" type="text" value="address" name="address" />
+					    <asp:TextBox runat="server" class="input" ID="address" />
+                        <br />
+                        <asp:RequiredFieldValidator runat="server" ControlToValidate="address" ErrorMessage="Address cannot be blank" />
 					    <br />
 					    <label for="phone" >Phone number</label>
-					    <asp:TextBox runat="server" class="input" ID="phone" type="tel" value="phone" name="phone"/>
+					    <asp:TextBox runat="server" class="input" ID="phone" />
+                        <br />
+                        <asp:RequiredFieldValidator runat="server" ControlToValidate="phone" ErrorMessage="Phone cannot be blank" Display="Dynamic" />
+                        <asp:RegularExpressionValidator runat="server" ControlToValidate="phone" ValidationExpression="\+?\d{4,}" ErrorMessage="Invalid Phone Number" Display="Dynamic"/>
 					    <br />
 					    <label for="email" >Email</label>
 					    <asp:TextBox runat="server" class="input" ID="email"/>
+                        <br />
+                        <asp:RegularExpressionValidator runat="server" ControlToValidate="email" ErrorMessage="invalid email" ValidationExpression="[a-zA-Z0-9_\-\.]+@[a-zA-Z]+\.[a-zA-Z]+" Display="Dynamic" />
+                        <asp:RequiredFieldValidator runat="server" ControlToValidate="email" ErrorMessage="Email cannot be blank" Display="Dynamic" />
+                        <br />
+                        <asp:Label runat="server" ID="registerLabel" />
 					    <asp:Button runat="server" Text="Submit" id="submit" OnClick="registerButtonClicked" />
 			    </section>
 		    </section>

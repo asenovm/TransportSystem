@@ -91,6 +91,18 @@ a{
 	position: relative;
 }
 
+.errorLabel
+{
+    color: #f00000;
+    font-weight: bold;        
+}
+
+.successLabel
+{
+    color: #00f000;
+    font-weight: bold;    
+}
+
 .logout
 {
     background: #e0ceb4;

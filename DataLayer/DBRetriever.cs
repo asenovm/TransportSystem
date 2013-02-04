@@ -106,5 +106,14 @@ namespace DataLayer
             }
             return matchingTravels;
         }
+
+        public bool ExistsCompany(string companyName) {
+            using (var db = new TransportSystemDB()) {
+                var company = from c in db.Companies
+                              where c.Name.Equals(companyName)
+                              select c;
+                return new LinkedList<Company>(company).Count > 0;
+            }
+        }
     }
 }
