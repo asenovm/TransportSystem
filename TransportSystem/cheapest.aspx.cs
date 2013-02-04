@@ -33,8 +33,10 @@ namespace TransportSystem
 
         private void Filter()
         {
-            results.DataSource = retriever.GetMatchingTravels(retriever.GetCheapestTravels(), "ticketPrice", endPoint.Text);
-            results.DataBind();
+            if (Page.IsValid) {
+                results.DataSource = retriever.GetMatchingTravels(retriever.GetCheapestTravels(), "end", endPoint.Text);
+                results.DataBind();
+            }
         }
 
         private void PopulateWithAllCheapestTravels()
@@ -44,12 +46,12 @@ namespace TransportSystem
         }
 
         protected void Logout(object sender, EventArgs e) {
-            FormsAuthentication.SignOut();
-            FormsAuthentication.RedirectToLoginPage();
+         
         }
 
         protected bool IsUserLogged() {
             return Membership.GetUser() != null;
         }
+
     }
 }

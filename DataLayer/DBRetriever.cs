@@ -88,10 +88,10 @@ namespace DataLayer
                         isAdding = travel.EndCity.Equals(value);
                         break;
                     case "startTime":
-                        isAdding = travel.StartTime.Equals(DateTime.ParseExact(value, "MM/dd/yyyy HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture));
+                        isAdding = travel.StartTime.Equals(DateTime.ParseExact(value, "MM/dd/yyyy HH:mm:ss", System.Globalization.CultureInfo.GetCultureInfo("EN-US")));
                         break;
                     case "endTime":
-                        isAdding = travel.EndTime.Equals(DateTime.ParseExact(value, "MM/dd/yyyy HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture));
+                        isAdding = travel.EndTime.Equals(DateTime.ParseExact(value, "MM/dd/yyyy HH:mm:ss", System.Globalization.CultureInfo.GetCultureInfo("EN-US")));
                         break;
                     case "company":
                         isAdding = travel.Company.Equals(value);

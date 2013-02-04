@@ -39,17 +39,41 @@ namespace TransportSystem
 
         private void Filter()
         {
-            results.DataSource = retriever.GetMatchingTravels(retriever.GetAllTravels(), filterValues.SelectedValue, filterValue.Text);
-            results.DataBind();
+            if (Page.IsValid)
+            {
+                results.DataSource = retriever.GetMatchingTravels(retriever.GetAllTravels(), filterValues.SelectedValue, filterValue.Text);
+                results.DataBind();
+            }
         }
 
         protected void Logout(object sender, EventArgs e) {
-            FormsAuthentication.SignOut();
-            FormsAuthentication.RedirectToLoginPage();
+
         }
 
         protected bool IsUserLogged() {
             return Membership.GetUser() != null;
+        }
+
+        protected void ValidateFilter(object sender, ServerValidateEventArgs args)
+        {
+            switch (filterValues.SelectedValue)
+            {
+                case "start":
+                    args.IsValid = ValidationUtil.IsValidCity(filterValue.Text);
+                    break;
+                case "end":
+                    args.IsValid = ValidationUtil.IsValidCity(filterValue.Text);
+                    break;
+                case "company":
+                    args.IsValid = ValidationUtil.IsValidName(filterValue.Text);
+                    break;
+                case "startTime":
+                    args.IsValid = ValidationUtil.IsValidTime(filterValue.Text);
+                    break;
+                case "endTime":
+                    args.IsValid = ValidationUtil.IsValidTime(filterValue.Text);
+                    break;
+            }
         }
     }
 }

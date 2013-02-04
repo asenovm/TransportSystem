@@ -57,24 +57,7 @@ namespace TransportSystem
         }
 
         private void ValidateTime(TextBox textBox, ServerValidateEventArgs args) {
-            if (!Regex.IsMatch(textBox.Text, "\\d+/\\d+/\\d+ \\d+:\\d+:\\d+"))
-            {
-                args.IsValid = false;
-            }
-            else {
-                string[] time = textBox.Text.Split(' ');
-                string[] date = time[0].Split('/');
-                string[] hours = time[1].Split(':');
-                int month = int.Parse(date[0]);
-                int day = int.Parse(date[1]);
-                int year = int.Parse(date[2]);
-
-                int hour = int.Parse(hours[0]);
-                int minute = int.Parse(hours[1]);
-                int seconds = int.Parse(hours[2]);
-
-                args.IsValid = month < 12 && month > 0 &&  day > 1 && day < 31 &&  hour >= 0 && hour < 24 && minute >= 0 && minute < 60 && seconds >= 0 && seconds < 60;
-            }
+            args.IsValid = ValidationUtil.IsValidTime(textBox.Text);
         }
         
     }

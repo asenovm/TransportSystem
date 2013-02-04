@@ -52,7 +52,9 @@
 				    </asp:DropDownList>
 				    <br />
 				    <label for="Enter the filter value">Option value</label>
-				    <asp:TextBox class="input" Text="Enter the filter value" runat="server" ID="filterValue" />
+				    <asp:TextBox class="input" runat="server" ID="filterValue" />
+                    <br />
+                    <asp:CustomValidator runat="server" ControlToValidate="filterValue" OnServerValidate="ValidateFilter" ErrorMessage="Invalid format." />
 				    <br />
                     <asp:Button Text="Filter" id="filter" runat="server" OnClick="OnFilterButtonClicked"/>
 				    <article class="pick">
@@ -60,8 +62,7 @@
 				    </article>
 				    <asp:GridView ID="results" runat="server" CssClass="gridView">
                         <HeaderStyle CssClass="gridViewItem" />
-                        <RowStyle CssClass="gridViewItem" />
-                    
+                        <RowStyle CssClass="gridViewItem" />    
                     </asp:GridView>
 			    </section>
 		    </section>

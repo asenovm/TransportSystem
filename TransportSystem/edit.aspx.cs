@@ -42,16 +42,16 @@ namespace TransportSystem
         protected void ValidateEditedValue(object sender, ServerValidateEventArgs args) {
             switch (attributesList.SelectedValue) { 
                 case "City":
-                    args.IsValid = Regex.IsMatch(newValue.Text,"\\w+");
+                    args.IsValid = ValidationUtil.IsValidCity(newValue.Text);
                     break;
                 case "Address":
-                    args.IsValid = Regex.IsMatch(newValue.Text,"\\w+");
+                    args.IsValid = ValidationUtil.IsValidAddress(newValue.Text);
                     break;
                 case "Email":
-                    args.IsValid = Regex.IsMatch(newValue.Text, "[a-zA-Z0-9_\\-\\.]+@[a-zA-Z0-9_\\-\\.]+\\.[a-zA-Z]+");
+                    args.IsValid = ValidationUtil.IsValidEmail(newValue.Text);
                     break;
                 case "Phone":
-                    args.IsValid = Regex.IsMatch(newValue.Text, "\\+?\\d{4,}");
+                    args.IsValid = ValidationUtil.IsValidPhone(newValue.Text);
                     break;
             }
         }
