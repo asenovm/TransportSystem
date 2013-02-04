@@ -45,6 +45,8 @@
 				    <br />
 				    <label for="endPoint"/>Enter the end point</label>
 				    <asp:TextBox ID="endPoint" runat="server" CssClass="input" Text="Enter the end point" />
+                    <br />
+                    <asp:RegularExpressionValidator ControlToValidate="endPoint" runat="server" ValidationExpression="[a-zA-Z]*" ErrorMessage="End point can consist of letters only." />
 				    <asp:Button id="filter" Text="Submit" runat="server" OnClick="OnEndPointButtonClicked"/>
 				    <article class="pick">
 					    Results
