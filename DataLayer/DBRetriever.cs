@@ -7,6 +7,9 @@ namespace DataLayer
 {
     public class DBRetriever
     {
+
+        private const string DATE_FORMAT = "MM/dd/yyyy HH:mm:ss";
+
         public IEnumerable<string> GetCompanyNames() {
             IEnumerable<string> result = null;
             using (var db = new TransportSystemDB()) {
@@ -79,32 +82,32 @@ namespace DataLayer
         public IEnumerable<TravelDAO> GetMatchingTravels(IEnumerable<TravelDAO> travels, string key, string value) {
             LinkedList<TravelDAO> matchingTravels = new LinkedList<TravelDAO>();
             foreach (var travel in travels) {
-                bool isAdding = false;
-                switch (key) { 
-                    case "start":
-                        isAdding = travel.StartCity.Equals(value);
-                        break;
-                    case "end":
-                        isAdding = travel.EndCity.Equals(value);
-                        break;
-                    case "startTime":
-                        isAdding = travel.StartTime.Equals(DateTime.ParseExact(value, "MM/dd/yyyy HH:mm:ss", System.Globalization.CultureInfo.GetCultureInfo("EN-US")));
-                        break;
-                    case "endTime":
-                        isAdding = travel.EndTime.Equals(DateTime.ParseExact(value, "MM/dd/yyyy HH:mm:ss", System.Globalization.CultureInfo.GetCultureInfo("EN-US")));
-                        break;
-                    case "company":
-                        isAdding = travel.Company.Equals(value);
-                        break;
-                    case "ticketPrice":
-                        isAdding = travel.TicketPrice == int.Parse(value);
-                        break;
-                }
-                if (isAdding) {
+                if (IsAddingItem(travel, key, value))
+                {
                     matchingTravels.AddLast(travel);
                 }
             }
             return matchingTravels;
+        }
+
+        private bool IsAddingItem(TravelDAO travel, string key, string value) {
+            switch (key)
+            {
+                case "start":
+                    return travel.StartCity.Equals(value);
+                case "end":
+                    return travel.EndCity.Equals(value);
+                case "startTime":
+                    return travel.StartTime.Equals(DateTime.ParseExact(value, DATE_FORMAT, System.Globalization.CultureInfo.GetCultureInfo("EN-US")));
+                case "endTime":
+                    return travel.EndTime.Equals(DateTime.ParseExact(value, DATE_FORMAT, System.Globalization.CultureInfo.GetCultureInfo("EN-US")));
+                case "company":
+                    return travel.Company.Equals(value);
+                case "ticketPrice":
+                    return travel.TicketPrice == int.Parse(value);
+                default:
+                    return false;
+            }        
         }
 
         public bool ExistsCompany(string companyName) {

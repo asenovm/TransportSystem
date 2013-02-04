@@ -32,7 +32,7 @@ namespace TransportSystem
         protected void ValidateCompanyName(object sender, ServerValidateEventArgs args)
         { 
             DBRetriever retriever = new DBRetriever();
-            args.IsValid = !retriever.ExistsCompany(name.Text) ;
+            args.IsValid = !retriever.ExistsCompany(name.Text) && name.Text.Length < 30;
         }
 
         private void ClearFields() {

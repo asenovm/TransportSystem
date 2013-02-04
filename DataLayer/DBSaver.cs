@@ -32,23 +32,7 @@ namespace DataLayer
                                     where c.Name.Equals(company)
                                     select c;
                 Company editedCompany = query.First();
-                switch (attribute) { 
-                    case "Name":
-                        editedCompany.Name = value;
-                        break;
-                    case "City":
-                        editedCompany.City = value;
-                        break;
-                    case "Address":
-                        editedCompany.Address = value;
-                        break;
-                    case "Phone":
-                        editedCompany.PhoneNumber = value;
-                        break;
-                    case "Email":
-                        editedCompany.Email = value;
-                        break;
-                }
+                EditCompanyAttribute(attribute, editedCompany, value);   
                 db.Refresh(System.Data.Objects.RefreshMode.ClientWins, editedCompany);
                 db.SaveChanges();
             }
@@ -64,6 +48,28 @@ namespace DataLayer
                 db.Stops.AddObject(intermediaryStop);
                 db.Travels.AddObject(travel);
                 db.SaveChanges();
+            }
+        }
+
+        private void EditCompanyAttribute(string attribute, Company editedCompany, string value)
+        {
+            switch (attribute)
+            {
+                case "Name":
+                    editedCompany.Name = value;
+                    break;
+                case "City":
+                    editedCompany.City = value;
+                    break;
+                case "Address":
+                    editedCompany.Address = value;
+                    break;
+                case "Phone":
+                    editedCompany.PhoneNumber = value;
+                    break;
+                case "Email":
+                    editedCompany.Email = value;
+                    break;
             }
         }
     }

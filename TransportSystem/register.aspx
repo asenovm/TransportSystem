@@ -40,23 +40,25 @@
 					    <label for="city" >City</label>
 					    <asp:TextBox runat="server" class="input" ID="city" />
                         <br />
-                        <asp:RequiredFieldValidator runat="server" ControlToValidate="city" ErrorMessage="City cannot be blank" />
+                        <asp:RequiredFieldValidator runat="server" ControlToValidate="city" ErrorMessage="City cannot be blank" Display="Dynamic" />
+                        <asp:RegularExpressionValidator runat="server" ControlToValidate="city" ErrorMessage="20 letters at max" ValidationExpression=".{1,19}" Display="Dynamic" />
 					    <br />
 					    <label for="address">Address</label>
 					    <asp:TextBox runat="server" class="input" ID="address" />
                         <br />
-                        <asp:RequiredFieldValidator runat="server" ControlToValidate="address" ErrorMessage="Address cannot be blank" />
+                        <asp:RequiredFieldValidator runat="server" ControlToValidate="address" ErrorMessage="Address cannot be blank" Display="Dynamic" />
+                        <asp:RegularExpressionValidator runat="server" ControlToValidate="address" ErrorMessage="30 letters at max" ValidationExpression=".{1,29}" Display="Dynamic" />
 					    <br />
 					    <label for="phone" >Phone number</label>
 					    <asp:TextBox runat="server" class="input" ID="phone" />
                         <br />
                         <asp:RequiredFieldValidator runat="server" ControlToValidate="phone" ErrorMessage="Phone cannot be blank" Display="Dynamic" />
-                        <asp:RegularExpressionValidator runat="server" ControlToValidate="phone" ValidationExpression="\+?\d{4,}" ErrorMessage="Invalid Phone Number" Display="Dynamic"/>
+                        <asp:RegularExpressionValidator runat="server" ControlToValidate="phone" ValidationExpression="\+?\d{4,14}" ErrorMessage="Invalid Phone Number" Display="Dynamic"/>
 					    <br />
 					    <label for="email" >Email</label>
 					    <asp:TextBox runat="server" class="input" ID="email"/>
                         <br />
-                        <asp:RegularExpressionValidator runat="server" ControlToValidate="email" ErrorMessage="invalid email" ValidationExpression="[a-zA-Z0-9_\-\.]+@[a-zA-Z]+\.[a-zA-Z]+" Display="Dynamic" />
+                        <asp:RegularExpressionValidator runat="server" ControlToValidate="email" ErrorMessage="invalid email" ValidationExpression="[a-zA-Z0-9_\-\.]{1,10}@[a-zA-Z]{1,6}\.[a-zA-Z]{1,3}" Display="Dynamic" />
                         <asp:RequiredFieldValidator runat="server" ControlToValidate="email" ErrorMessage="Email cannot be blank" Display="Dynamic" />
                         <br />
                         <asp:Label runat="server" ID="registerLabel" />
