@@ -46,7 +46,8 @@ namespace TransportSystem
         }
 
         protected void Logout(object sender, EventArgs e) {
-         
+            FormsAuthentication.SignOut();
+            FormsAuthentication.RedirectToLoginPage();
         }
 
         protected bool IsUserLogged() {

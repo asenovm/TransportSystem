@@ -10,7 +10,8 @@
             var isUserLogged = '<%= IsUserLogged() %>' === 'True';
             $(document).ready(function () {
                 if (!isUserLogged) {
-                    $('ul li:lt(4)').css('display', 'none');
+                    $('ul li:lt(4)').hide();
+                    $('#logout').hide();
                 }
             });
         </script>
@@ -44,7 +45,7 @@
 				    </article>
 				    <br />
 				    <label for="endPoint"/>Enter the end point</label>
-				    <asp:TextBox ID="endPoint" runat="server" CssClass="input" Text="Enter the end point" />
+				    <asp:TextBox ID="endPoint" runat="server" CssClass="input" />
                     <br />
                     <asp:RegularExpressionValidator ControlToValidate="endPoint" runat="server" ValidationExpression="[a-zA-Z]*" ErrorMessage="End point can consist of words only." />
                     <br />

@@ -65,7 +65,6 @@
     <Content Include="images\header.png" />
     <Content Include="images\tile.png" />
     <Content Include="jscript\jquery-1.8.3.js" />
-    <Content Include="jscript\utils.js" />
     <Content Include="login.aspx" />
     <Content Include="register.aspx" />
     <Content Include="registerUser.aspx" />

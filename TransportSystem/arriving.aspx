@@ -10,7 +10,8 @@
             var isUserLogged = '<%= IsUserLogged() %>' === 'True';
             $(document).ready(function () {
                 if (!isUserLogged) {
-                    $('ul li:lt(4)').css('display', 'none');
+                    $('ul li:lt(4)').hide();
+                    $('#logout').hide();
                 }
             });
         </script>
