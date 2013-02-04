@@ -26,6 +26,11 @@ html, body{
 	height: 600px;
 }
 
+.biggest
+{
+   height: 700px;
+}
+
 .small{
 	height: 200px;
 }

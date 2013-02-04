@@ -10,7 +10,6 @@
 	</head>
 	<body>
         <form runat="server">
-        <asp:ScriptManager EnablePageMethods="true" runat="server" />
 		    <header>
 			    <h1>Transport Information System</h1>
 			    <h2>Find the best way to travel</h2>
@@ -32,29 +31,50 @@
 			    <article class="grey bold label">
 				    You need to provide the following information in order to add a new line to the schedule
 			    </article>
-			    <section class="container bigger bordered">
+			    <section class="container biggest bordered">
 				    <label for="company">Company name</label>
 				    <asp:DropDownList runat="server" ID="companiesList" class="input" />
 				    <br />
 				    <label for="start">Start City</label>
-				    <asp:TextBox runat="server" class="input" type="text" name="Start City" value="Start City" ID="startCity" />
+				    <asp:TextBox runat="server" class="input" ID="startCity" />
+                    <br />
+                    <asp:RequiredFieldValidator ControlToValidate="startCity" runat="server" Display="Dynamic" ErrorMessage="Field cannot be blank" />
+                    <asp:RegularExpressionValidator ControlToValidate="startCity" runat="server" Display="Dynamic" ValidationExpression="[a-zA-Z]+" ErrorMessage="Invalid start city" />
 				    <br />
 				    <label for="startTime">Start Time</label>
-				    <asp:TextBox runat="server" class="input" type="text" name="Start Time" value="Start Time" ID="startTime" />
+				    <asp:TextBox runat="server" class="input" ID="startTime" />
+                    <br />
+                    <asp:CustomValidator ControlToValidate="startTime" OnServerValidate="ValidateStartTime" runat="server" Display="Dynamic" ErrorMessage="Invalid time format. Format is MM/DD/YYYY HH:MM:SS" />
+                    <asp:RequiredFieldValidator ControlToValidate="startTime" runat="server" ErrorMessage="Field cannot be blank." Display="Dynamic"/>
 				    <br />
 				    <label for="intermediary">Intermediary Stop</label>
-				    <asp:TextBox runat="server" class="input" type="text" name="Intermediary Stop" value="Intermediary Stop" ID="intermediaryStop" />
+				    <asp:TextBox runat="server" class="input" ID="intermediaryStop" />
+                    <br />
+                    <asp:RegularExpressionValidator runat="server" ControlToValidate="intermediaryStop" ValidationExpression="[a-zA-Z]+" ErrorMessage="Invalid city" />
+                    <br />
 				    <button class="right" type="button">Add</button>
 				    <br />
 				    <label for="end">End City</label>
-				    <asp:TextBox runat="server" class="input" type="text" name="End City" value="End City" ID="endCity" />
+				    <asp:TextBox runat="server" class="input" ID="endCity" />
+                    <br />
+                    <asp:RequiredFieldValidator ControlToValidate="endCity" runat="server" Display="Dynamic" ErrorMessage="Field cannot be blank." />
+                    <asp:RegularExpressionValidator ControlToValidate="endCity" runat="server" Display="Dynamic" ErrorMessage="Invalid end city" ValidationExpression="[a-zA-Z]+" />
 				    <br />
 				    <label for="endTime">End Time</label>
-				    <asp:TextBox runat="server" class="input" type="text" name="End Time" value="End Time" ID="endTime" />
+				    <asp:TextBox runat="server" class="input" ID="endTime" />
+                    <br />
+                    <asp:RequiredFieldValidator ControlToValidate="endTime" runat="server" ErrorMessage="Field cannot be blank" Display="Dynamic" />
+                    <asp:CustomValidator ControlToValidate="endTime" runat="server" OnServerValidate="ValidateEndTime" ErrorMessage="Invalid time format. Format is MM/DD/YYYY HH:MM:SS" Display="Dynamic" />
 				    <br />
 				    <label for="price">Ticket Price</label>
-				    <asp:TextBox runat="server" class="input" type="text" name="Ticket Price" value="Ticket Price" ID="ticketPrice" />
-				    <asp:Button runat="server" type="submit" Text="Submit" id="submit" OnClick="scheduleButtonClicked" />
+				    <asp:TextBox runat="server" class="input" ID="ticketPrice" />
+                    <br />
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="ticketPrice" ErrorMessage="Field cannot be blank" Display="Dynamic" />
+                    <asp:RegularExpressionValidator runat="server" ControlToValidate="ticketPrice" ErrorMessage="Invalid price format" Display="Dynamic" ValidationExpression="\d+" />
+                    <br />
+                    <asp:Label ID="scheduleLabel" runat="server" />
+                    <br />
+				    <asp:Button runat="server" type="submit" Text="Submit" id="submit" OnClick="scheduleButtonClicked" CssClass="successLabel" />
                 </section>
 		    </section>
 		    <footer class="grey">
