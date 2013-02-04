@@ -58,7 +58,7 @@ namespace TransportSystem
 
         protected void ValidatePrice(object sender, ServerValidateEventArgs args) {
             int result;
-            args.IsValid = int.TryParse(ticketPrice.Text, out result);
+            args.IsValid = int.TryParse(ticketPrice.Text, out result) && result > 0;
         }
 
         private void ValidateTime(TextBox textBox, ServerValidateEventArgs args) {
