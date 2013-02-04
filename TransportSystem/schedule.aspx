@@ -38,7 +38,7 @@
 				    <asp:TextBox runat="server" class="input" ID="startCity" />
                     <br />
                     <asp:RequiredFieldValidator ControlToValidate="startCity" runat="server" Display="Dynamic" ErrorMessage="Field cannot be blank" />
-                    <asp:RegularExpressionValidator ControlToValidate="startCity" runat="server" Display="Dynamic" ValidationExpression="[a-zA-Z]{1,29}" ErrorMessage="Invalid start city" />
+                    <asp:RegularExpressionValidator ControlToValidate="startCity" runat="server" Display="Dynamic" ValidationExpression="[a-zA-Z]{1,10}" ErrorMessage="Invalid start city" />
 				    <br />
 				    <label for="startTime">Start Time</label>
 				    <asp:TextBox runat="server" class="input" ID="startTime" />
@@ -49,13 +49,13 @@
 				    <label for="intermediary">Intermediary Stop</label>
 				    <asp:TextBox runat="server" class="input" ID="intermediaryStop" />
                     <br />
-                    <asp:RegularExpressionValidator runat="server" ControlToValidate="intermediaryStop" ValidationExpression="[a-zA-Z]{1,29}" ErrorMessage="Invalid city" />
+                    <asp:RegularExpressionValidator runat="server" ControlToValidate="intermediaryStop" ValidationExpression="[a-zA-Z]{1,10}" ErrorMessage="Invalid city" />
 				    <br />
 				    <label for="end">End City</label>
 				    <asp:TextBox runat="server" class="input" ID="endCity" />
                     <br />
                     <asp:RequiredFieldValidator ControlToValidate="endCity" runat="server" Display="Dynamic" ErrorMessage="Field cannot be blank." />
-                    <asp:RegularExpressionValidator ControlToValidate="endCity" runat="server" Display="Dynamic" ErrorMessage="Invalid end city" ValidationExpression="[a-zA-Z]{1,29}" />
+                    <asp:RegularExpressionValidator ControlToValidate="endCity" runat="server" Display="Dynamic" ErrorMessage="Invalid end city" ValidationExpression="[a-zA-Z]{1,10}" />
 				    <br />
 				    <label for="endTime">End Time</label>
 				    <asp:TextBox runat="server" class="input" ID="endTime" />
@@ -68,6 +68,7 @@
                     <br />
                     <asp:RequiredFieldValidator runat="server" ControlToValidate="ticketPrice" ErrorMessage="Field cannot be blank" Display="Dynamic" />
                     <asp:RegularExpressionValidator runat="server" ControlToValidate="ticketPrice" ErrorMessage="Invalid price format" Display="Dynamic" ValidationExpression="\d+" />
+                    <asp:CustomValidator runat="server" ControlToValidate="ticketPrice" ErrorMessage="Price out of range" OnServerValidate="ValidatePrice" Display="Dynamic" />
                     <br />
                     <asp:Label ID="scheduleLabel" runat="server" CssClass="successLabel" />
                     <br />
