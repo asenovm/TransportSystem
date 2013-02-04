@@ -6,7 +6,6 @@
 		<title>Transport system - Login</title>
 		<link type="text/css" rel="stylesheet" href="styles/main.css" />
 		<script type="text/javascript" src="jscript/jquery-1.8.3.js"></script>
-		<script type="text/javascript" src="jscript/utils.js"></script>
 	</head>
 	<body>
         <form runat="server">
@@ -42,7 +41,6 @@
 				    </article>
 				    <br />
 				    <asp:DropDownList runat="server" ID="attributesList">
-					    <asp:ListItem value="Name">Name</asp:ListItem>
 					    <asp:ListItem value="City">City</asp:ListItem>
 					    <asp:ListItem value="Address">Address</asp:ListItem>
 					    <asp:ListItem value="Phone">Phone</asp:ListItem>
@@ -51,6 +49,12 @@
                     <br />
 				    <label for="value">New Value</label>
 				    <asp:TextBox class="input" runat="server" type="text" name="Enter new value" value="Enter new value" ID="newValue" />
+                    <br />
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="newValue" ErrorMessage="Field cannot be blank" Display="Dynamic" />
+                    <asp:CustomValidator runat="server" ControlToValidate="newValue" ErrorMessage="Invalid value for attribute" OnServerValidate="ValidateEditedValue" Display="Dynamic" />
+                    <br />
+                    <asp:Label runat="server" ID="editLabel" />
+                    <br />
 				    <asp:Button runat="server" type="submit" Text="Submit" id="submit" OnClick="editButtonClicked"/>
 			    </section>
 		    </section>
