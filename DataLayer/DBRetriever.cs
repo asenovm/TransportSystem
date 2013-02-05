@@ -36,6 +36,14 @@ namespace DataLayer
             return result;
         }
 
+        public IEnumerable<TravelDAO> GetArrivingTravels() {
+            return GetMatchingTravels(GetAllTravels(), "end", "Sofia");
+        }
+
+        public IEnumerable<TravelDAO> GetDepartingTravels() {
+            return GetMatchingTravels(GetAllTravels(), "start", "Sofia");
+        }
+
         public IEnumerable<TravelDAO> GetFastestTravels() {
             Dictionary<string, TravelDAO> fastestTravels = new Dictionary<string, TravelDAO>();
             IEnumerable<TravelDAO> allTravels = GetAllTravels();

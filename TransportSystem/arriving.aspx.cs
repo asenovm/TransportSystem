@@ -33,14 +33,14 @@ namespace TransportSystem
         }
 
         private void PopulateWithAllTravels() {
-            results.DataSource = retriever.GetAllTravels();
+            results.DataSource = retriever.GetArrivingTravels();
             results.DataBind();
         }
 
         private void Filter() {
             if (Page.IsValid)
             {
-                results.DataSource = retriever.GetMatchingTravels(retriever.GetAllTravels(), filterValues.SelectedValue, filterValue.Text);
+                results.DataSource = retriever.GetMatchingTravels(retriever.GetArrivingTravels(), filterValues.SelectedValue, filterValue.Text);
                 results.DataBind();
             }
         }

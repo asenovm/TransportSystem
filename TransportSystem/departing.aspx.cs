@@ -33,7 +33,7 @@ namespace TransportSystem
 
         private void PopulateWithAllTravels()
         {
-            results.DataSource = retriever.GetAllTravels();
+            results.DataSource = retriever.GetDepartingTravels();
             results.DataBind();
         }
 
@@ -41,7 +41,7 @@ namespace TransportSystem
         {
             if (Page.IsValid)
             {
-                results.DataSource = retriever.GetMatchingTravels(retriever.GetAllTravels(), filterValues.SelectedValue, filterValue.Text);
+                results.DataSource = retriever.GetMatchingTravels(retriever.GetDepartingTravels(), filterValues.SelectedValue, filterValue.Text);
                 results.DataBind();
             }
         }
